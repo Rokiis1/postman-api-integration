@@ -2,7 +2,7 @@ name: Automated API tests using Postman CLI
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/1 * * * *'
 
 env:
   BASED_URI: https://simple-books-api.glitch.me
