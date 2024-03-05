@@ -16,11 +16,15 @@ jobs:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
     steps:
       - uses: actions/checkout@v4
-      - name: Install Postman CLI
+      - name: Install Postman CLI in the linux
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      - name: Install Postman CLI in the Mac OS
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/osx_64.sh" | sh
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
       - name: Run API tests
         run: |
           postman collection run "32916326-1c190dfb-60f9-479d-bbec-771a81087aa4" -e "32916326-2f640ac5-0801-4ec1-90b0-6cb49284f8d2"
+
