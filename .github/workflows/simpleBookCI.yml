@@ -1,4 +1,4 @@
-name: Automated API tests using Postman CLI
+name: Automated API tests using Postman CLI simpleBook
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  BASED_URI: https://simple-books-api.glitch.me
+  BASED_URI: 'https://simple-books-api.glitch.me'
 
 jobs:
   automated-api-tests:

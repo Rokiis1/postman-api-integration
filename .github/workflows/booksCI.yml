@@ -1,0 +1,20 @@
+name: Automated API tests using Postman CLI bookStore
+
+on: push
+
+env:
+  BASED_URI: 'https://bookstore.toolsqa.com/'
+
+jobs:
+  automated-api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+      - name: Run API tests
+        run: |
+          postman collection run "32916326-d257b5b8-d4c1-4773-b888-39e03a15030c" -e "32916326-6979bec0-8b18-4c19-8eba-37c043d3a543"
