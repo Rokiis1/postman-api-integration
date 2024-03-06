@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  BASED_URI: 'https://simple-books-api.glitch.me'
+  BASE_URI: 'https://simple-books-api.glitch.me'
   POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
   POSTMAN_COLLECTION_UID: '32916326-6e2c2212-87cd-45bb-92c2-1f56605e8b9c'
   POSTMAN_ENVIRONMENT_UID: '32916326-c4e886ee-f6db-4843-9e74-339a5c2a9b68'
