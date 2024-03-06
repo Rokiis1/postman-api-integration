@@ -28,7 +28,7 @@ jobs:
           npm install -g newman
       - name: Install newman reporter
         run: |
-          npm install -g newman-report-html
+          npm install -g newman-reporter-html
       - name: Fetch Postman collection
         run: |
           curl -X GET newman run "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
