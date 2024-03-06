@@ -31,12 +31,12 @@ jobs:
           npm install -g newman-reporter-html
       - name: Fetch Postman collection
         run: |
-          curl -X GET newman run "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
+          curl -X GET "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
             -H "X-Api-Key: ${POSTMAN_API_KEY}" > collection.json
         shell: bash
       - name: Fetch postman environment
         run: |
-          curl -X GET newman run "https://api.getpostman.com/environment/${POSTMAN_ENVIRONMENT_UID}" \
+          curl -X GET "https://api.getpostman.com/environment/${POSTMAN_ENVIRONMENT_UID}" \
             -H "X-Api-Key: ${POSTMAN_API_KEY}" > environment.json
         shell: bash
       - name: Run API tests
