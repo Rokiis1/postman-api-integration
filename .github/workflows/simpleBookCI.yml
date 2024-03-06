@@ -1,22 +1,19 @@
-name: Automated API tests using Postman CLI simpleBook
+name: Automated API tests using Postman CLI simpleBookAPI
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
-env:
-  BASE_URI: 'https://simple-books-api.glitch.me'
+env: 
+  BASED_URI: 'https://simple-books-api.glitch.me'
   POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-  POSTMAN_COLLECTION_UID: '32916326-6e2c2212-87cd-45bb-92c2-1f56605e8b9c'
-  POSTMAN_ENVIRONMENT_UID: '32916326-c4e886ee-f6db-4843-9e74-339a5c2a9b68'
+  POSTMAN_COLLECTION_UID: '19276184-120be920-70dc-40f0-8bf1-9c660ac7e49a'
+  POSTMAN_ENVIRONMENT_UID: '19276184-5864a657-2c05-4010-a4f6-8484eff6965b'
 
 jobs:
   automated-api-tests:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -26,7 +23,7 @@ jobs:
       - name: Install Newman
         run: |
           npm install -g newman
-      - name: Install newman reporter
+      - name: Install Newman reporter
         run: |
           npm install -g newman-reporter-html
       - name: Fetch Postman collection
@@ -34,9 +31,9 @@ jobs:
           curl -X GET "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
             -H "X-Api-Key: ${POSTMAN_API_KEY}" > collection.json
         shell: bash
-      - name: Fetch postman environment
+      - name: Fetch Postman environment
         run: |
-          curl -X GET "https://api.getpostman.com/environment/${POSTMAN_ENVIRONMENT_UID}" \
+          curl -X GET "https://api.getpostman.com/environments/${POSTMAN_ENVIRONMENT_UID}" \
             -H "X-Api-Key: ${POSTMAN_API_KEY}" > environment.json
         shell: bash
       - name: Run API tests
@@ -44,6 +41,6 @@ jobs:
           newman run collection.json --environment environment.json --reporters cli,html --reporter-html-export "./report.html"
       - name: Upload report
         uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: report
           path: report.html
