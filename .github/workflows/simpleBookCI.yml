@@ -32,7 +32,7 @@ jobs:
       - name: Fetch Postman collection
         run: |
           curl -X GET newman run "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
-          -H "X-Api-Key: ${POSTMAN_API_KEY}" > collection.json
+            -H "X-Api-Key: ${POSTMAN_API_KEY}" > collection.json
         shell: bash
       - name: Fetch postman environment
         run: |
